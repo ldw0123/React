@@ -1,3 +1,4 @@
+// 버튼을 클릭하면 1씩 증가하는 프로그램
 import React, {useState} from 'react'; // useState: state를 사용하게 해 줌.리액트에서 제공하는 유용한 함수 중 하나 (리액트훅)
 import './App.css';
 
