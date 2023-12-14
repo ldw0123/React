@@ -9,6 +9,7 @@ function App() {
     count = count + 1;
     setCount2(count2 + 1) // state는 함수.
     console.log("count work?", count, "state count2", count2)
+    // count의 초기값은 1, count2의 초기값은 0
   }
   return(
    <main>
