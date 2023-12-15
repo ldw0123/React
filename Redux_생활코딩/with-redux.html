@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redux 없는 html</title>
 </html>
-</title>
+
+<!-- Redux CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.1.1/redux.min.js"></script>
 
 <style>
   .container {
@@ -20,10 +22,29 @@
   <div id="red"></div> <br />
 
   <script>
+    // reducer() 함수: dispatch에 의해 action이 들어오게 되면 reducer()가 action값과 기존의 state값을 참조해서 새로운 state값으로 만들어 준다
+    // 은행으로 치면, dispatch는 창구 직원, reducer는 은행 장부에 기입하는 사람, state는 은행 장부
+    // 인자 1: state / 인자 2: action
+    function reducer(state, action) {
+      if (state === undefined) {
+        // state값이 정의되어 있지 않으면
+        return {
+          // state 초기값
+          color: 'yellow'
+        }
+      }
+    }
+
+    // Redux 객체의 createStore API
+    let store = Redux.createStore();
+    console.log(store.getState())
+
     function red() {
+      let state = store.getState();
+
       document.querySelector('#red').innerHTML =
         `
-          <div class='container' id='component_red'>
+          <div class='container' id='component_red' style="background-color: ">
             <h1>red</h1>
             <input type="button" value="fire" 
             onclick="
