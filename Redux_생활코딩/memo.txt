@@ -1,0 +1,27 @@
+1. Store: 리덕스의 핵심. 정보가 저장되는 곳
+   Store 안에는 state라는 실제 정보가 저장된다
+   하지만, state는 직접 접속이 불가하다. getState를 통해서 값을 가져오고, dispatch와 reducer를 통해 state의 값을 변경시킨다
+   subscribe를 이용해서 값이 변경되었을 때 구동될 함수를 등록해준다
+
+2. reducer() 함수: Store를 생성할 때 꼭 줘야 하는 인자. reducer를 통해 state의 값을 변경한다
+   reducer의 return 하는 객체는 state의 새로운 값이 된다
+   reducer는 state를 입력 값으로 가지고, action을 참조해서, 새로운 state 값을 만들어서, return 해주는 state를 가공해주는 가공자이다
+
+3. render: UI를 만들어준다. 개발자가 작성할 코드 부분
+
+4. Store에 접근 하기 전에, 일종의 창구 직원 역할하는 함수(dispatch, subscribe, getState)
+
+5. subscribe(): state가 바뀔 때마다 UI가 갱신되도록, render가 호출된다
+
+6. action: submit을 눌렀을 때, 객체 하나를 전송한다. 이때 이 객체를 action이라고 한다
+   이 action은 dispatch에 전달된다
+
+7. dispatch는 2가지 일을 한다
+   1_reducer를 호출해서, state 값을 바꾼다
+     - reducer에 현재의 state 값과, action 값 2개를 reducer에 전달해서 바꾼다
+     - 바꾸는 작업이 끝난 후 subscribe를 이용해서 render()함수를 호출한다. 그러면 화면이 갱신된다
+   2_이후, subscribe를 이용해서, render를 호출한다
+     - 새로운 state에 맞게 UI가 변한다
+
+
+ 
