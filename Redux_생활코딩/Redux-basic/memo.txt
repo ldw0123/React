@@ -9,18 +9,18 @@
 
 3. render: UI를 만들어준다. 개발자가 작성할 코드 부분
 
-4. store에 접근 하기 전에, 일종의 창구 직원 역할하는 함수(dispatch, subscribe, getState)
+4. store에 접근 하기 전에, 일종의 창구 직원 역할하는 함수 - dispatch(), subscribe(), getState()
 
 5. subscribe(): state가 바뀔 때마다 UI가 갱신되도록, render가 호출된다
 
-6. action: submit을 눌렀을 때, 객체 하나를 전송한다. 이때 이 객체를 action이라고 한다
+6. action 객체: submit을 눌렀을 때, 객체 하나를 전송한다. 이때 이 객체를 action이라고 한다
    이 action은 dispatch에 전달된다
 
 7. dispatch()는 2가지 일을 한다
-   1_reducer를 호출해서, state 값을 바꾼다
+   1_reducer()를 호출해서, state 값을 바꾼다
      - reducer에 현재의 state 값과, action 값 2개를 reducer에 전달해서 바꾼다
      - 바꾸는 작업이 끝난 후 subscribe를 이용해서 render()함수를 호출한다. 그러면 화면이 갱신된다
-   2_이후, subscribe를 이용해서, render를 호출한다
+   2_이후, subscribe()를 이용해서, render를 호출한다
      - 새로운 state에 맞게 UI가 변한다
 
 
