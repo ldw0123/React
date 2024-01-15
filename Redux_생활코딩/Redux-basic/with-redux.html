@@ -28,7 +28,7 @@
     // 은행으로 치면, dispatch는 창구 직원, reducer는 은행 장부에 기입하는 사람, state는 은행 장부
     // 인자 1: 이전의 state값 / 인자 2: action
 
-    // reducer()는 store의 state의 값을 변경해 준다. 이전의 state값과 action을 이용해서 새로운 state값을 return해주면, 그 return값이 새로운 state값이 된다
+    // reducer()는 store의 state의 값을 변경해 준다. 이전의 state값과 action값을 이용해서 새로운 state값을 return해주면, 그 return값이 새로운 state값이 된다
     // return된 값은 원본을 바꾸는 것이 아닌('불변. immutable'이라는 특성), 이전의 값을 복제한 결과를 return한다
     function reducer(state, action) {
       console.log(state, action);
@@ -39,14 +39,14 @@
       }
       let newState;
       if (action.type === "CHANGE_COLOR") {
-        // Object.assign() 함수: 인자 1 - 반드시 빈 객체 / 인자 2번쨰 이하 - 변경할 객체
+        // Object.assign() 함수: 객체를 불러오는 함수. 인자 1 - 반드시 빈 객체 / 인자 2번쨰 이하 - 변경할 객체(빌트인 객체 형식)
         // state의 프로퍼티들이 빈 객체에 복제되어 반환됨
         newState = Object.assign({}, state, {
           color: action.color
         })
       }
       console.log("action.type, action, state, newState : \n", action.type, action, state, newState)
-      return newState; // 복제된 state값을 return
+      return newState; // 복제된 state값을 return (새로운 state값)
     }
     // Redux.createStore(): store를 생성한다
     // 인자 1: reducer() 함수를 사용
