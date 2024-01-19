@@ -24,5 +24,15 @@
    2_이후, subscribe()를 이용해서, render를 호출한다
      - 새로운 state에 맞게 UI가 변한다
 
+////////////////////////////////////////////////////////////////////
+
+🔥 Redux를 쓰는 이유
+Redux가 없는 코드는 각각의 component(부품) 간의 의존성이 너무 높다
+예를 들어, 다른 component의 코드를 수정하거나 삭제하면(Red 삭제), 다른 component와(Blue, Green) 연결된 코드가 얽혀있어 오류가 발생한다
+그러므로 component 추가, 수정, 삭제 시, 기존의 component를 모두 수정해야 한다
+하지만, Redux를 통해 중앙 집중형 관리를 하면, 각각의 component는 action(상태가 바뀌었다는 것)을 store에 dispatch(통보)하면 된다
+이에 따른 자신의 변화를 작성 후 store에 subscribe(구독)하면, state가 바뀔 때마다 통보를 받기 때문에 다른 component와의 연결 없이 자신의 모양을 자유롭게 바꿀 수 있다
+즉, 수정해도 다른 부품들은 영향을 받지 않게된다
+요약하자면, Redux를 통해 각 Module의 독립성을 보장받을 수 있다
 
  
