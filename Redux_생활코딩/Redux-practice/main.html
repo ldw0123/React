@@ -28,20 +28,19 @@
       function TOC() {
         let state = store.getState(); // store에 저장된 state값을 변수 state에 대입
         console.log('store.getState()', state);
-
         let i = 0;
         let liTags = '';
         while (i < state.contents.length) {
           liTags += `
-            <li>
-              <a onclick="
+        <li>
+            <a onclick="
                 event.preventDefault(); // 이벤트의 기본 동작을 방지한다 (a 태그의 페이지 이동 동작 방지)
-                let action = {type: "SELECT", id: ${state.contents[i].id}}
+                let action = {type: 'SELECT', id:${state.contents[i].id}}
                 store.dispatch(action); // dispatch(action)로 action 정보를 넘기고, createStore()는 reducer()를 호출한다
-              "
-              href="${state.contents[i].id}">
-                ${state.contents[i].title}</a>  
-            </li>`;
+            " href="${state.contents[i].id}">
+                ${state.contents[i].title}
+            </a>  
+        </li>`;
           i = i + 1;
         }
 
@@ -72,7 +71,6 @@
 
       // reducer(이전 state값, 호출된 이후의 action값)
       function reducer(state, action) {
-
         // store를 처음 생성하면 최초 1회로 action과는 상관없이 호출이 되는데, 그 떄의 state값은 undefined 이다 
         if (state === undefined) {
           return { // 새로운 state값 반환
@@ -99,7 +97,7 @@
             selected_id: action.id
           }) // state 객체의 값과, selected_id의 값을 newState 객체에 복제
         }
-        console.log("action", action, state, newState);
+        console.log("action, state, newState", action, state, newState);
         return newState;
       }
 
