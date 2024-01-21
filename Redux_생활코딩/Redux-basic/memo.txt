@@ -4,7 +4,8 @@
    subscribe를 이용해서 값이 변경되었을 때 구동될 함수를 등록해준다
    store를 생성하면 내부에 state값이 생기고, state를 가져올 때는 getState를 써야 한다
 
-2. reducer() 함수: store를 생성할 때 꼭 줘야 하는 인자. reducer를 통해 state의 값을 변경한다
+2. reducer() 함수: store를 생성할 때 꼭 줘야 하는 인자 -> Redux.createStore(reducer);
+   reducer를 통해 store의 state의 값을 변경한다
    reducer가 return 하는 객체는 state의 새로운 값이 된다
    reducer는 state를 입력 값으로 가지고, action을 참조해서, 새로운 state 값을 만들어서, return 해주는 state를 가공해주는 가공자이다
 
