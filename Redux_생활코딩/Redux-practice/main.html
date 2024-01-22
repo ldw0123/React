@@ -61,10 +61,21 @@
       }
 
       function article() {
+        let state = store.getState();
+        let i = 0;
+        let aTitle, aDesc;
+        while (i < state.contents.length) {
+          if (state.contents[i].id === state.selected_id) {
+            aTitle = state.contents[i].title;
+            aDesc = state.contents[i].desc;
+            break;
+          }
+          i += 1;
+        }
         document.querySelector('#article').innerHTML = `
         <article>
-          <h2>HTML</h2>
-          HTML is...
+          <h2>${aTitle}</h2>
+          ${aDesc}
         </article>
         `
       }
@@ -101,8 +112,15 @@
         return newState;
       }
 
+      // 스토어 생성
       // Redux.createStore(reducer): store를 생성한다
       let store = Redux.createStore(reducer);
+
+      // 상태 변화 구독
+      // store.subscribe(): 상태변화가 생길 때마다 이를 감지(상태변화를 구독)하고, 등록된 콜백함수(여기서는 article)를 실행시킨다
+      // subscribe() 함수는 UI를 새로 그린다
+      store.subscribe(article); // store 객체에 subscribe() 메서드를 호출한다
+
 
       subject();
       TOC();

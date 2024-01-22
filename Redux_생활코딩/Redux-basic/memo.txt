@@ -14,6 +14,7 @@
 4. store에 접근 하기 전에, 일종의 창구 직원 역할하는 함수 - dispatch(), subscribe(), getState()
 
 5. subscribe(): state가 바뀔 때마다 UI가 갱신되도록, render가 호출된다
+   store.subscribe() : store객체에 subscribe()메서드를 호출한다
 
 6. action 객체: submit을 눌렀을 때, 객체 하나를 전송한다. 이때 이 객체를 action이라고 한다
    이 action은 dispatch에 전달된다
