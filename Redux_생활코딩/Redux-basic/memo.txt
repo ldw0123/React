@@ -1,3 +1,5 @@
+🔥 Redux
+
 1. store: 리덕스의 핵심. 정보가 저장되는 곳
    store 안에는 state라는 실제 정보가 저장된다. store는 단 한개로 존재한다
    하지만, state는 직접 접속이 불가하다. getState()를 통해서 state값을 가져오고, dispatch와 reducer를 통해 state값을 변경시킨다
@@ -14,7 +16,7 @@
 4. store에 접근 하기 전에, 일종의 창구 직원 역할하는 함수 - dispatch(), subscribe(), getState()
 
 5. subscribe(): state가 바뀔 때마다 UI가 갱신되도록, render가 호출된다
-   store.subscribe() : store객체에 subscribe()메서드를 호출한다
+   store.subscribe() : store 객체의 subscribe() 메서드를 호출한다
 
 6. action 객체: submit을 눌렀을 때, 객체 하나를 전송한다. 이때 이 객체를 action이라고 한다
    이 action은 dispatch에 전달된다
