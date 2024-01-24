@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,75 +9,102 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.1.1/redux.min.js"></script>
 
   </head>
+
   <body>
     <div id="subject"></div>
     <div id="toc"></div>
     <div id="control"></div>
-    <div id="article"></div>
+    <div id="content"></div>
 
     <script>
       function subject() {
         document.querySelector('#subject').innerHTML = `
-        <header>
-          <h1>WEB</h1>
-          Hello, WEB!
-        </header>
-        `
+    <header>
+        <h1>WEB</h1>
+        Hello, WEB!
+    </header>
+    `
       }
 
       function TOC() {
         let state = store.getState(); // store에 저장된 state값을 변수 state에 대입
-        console.log('store.getState()', state);
         let i = 0;
         let liTags = '';
         while (i < state.contents.length) {
-          liTags += `
+          liTags = liTags + `
         <li>
             <a onclick="
                 event.preventDefault(); // 이벤트의 기본 동작을 방지한다 (a 태그의 페이지 이동 동작 방지)
-                let action = {type: 'SELECT', id:${state.contents[i].id}}
+                let action = {type:'SELECT', id:${state.contents[i].id}}
                 store.dispatch(action); // dispatch(action)로 action 정보를 넘기고, createStore()는 reducer()를 호출한다
             " href="${state.contents[i].id}">
                 ${state.contents[i].title}
-            </a>  
+            </a>
         </li>`;
-          i = i + 1;
+          i += 1;
         }
-
         document.querySelector('#toc').innerHTML = `
-        <nav>
-          <ol>${liTags}</ol>
-        </nav>
-        `;
+    <nav>
+        <ol>${liTags}</ ol>
+    </nav>
+    `;
       }
 
       function control() {
         document.querySelector('#control').innerHTML = `
-        <ul>
-          <li><a href="/create">create</a></li>
-          <li><input type="button" value="delete" /></li>
-        </ul>
-        `
+    <ul>
+        <li><a onclick="event.preventDefault();"
+        href="/create">create</a></li>
+        <li><input type="button" value="delete"></li>
+    </ul>
+    `;
       }
 
       function article() {
         let state = store.getState();
-        let i = 0;
-        let aTitle, aDesc;
-        while (i < state.contents.length) {
-          if (state.contents[i].id === state.selected_id) {
-            aTitle = state.contents[i].title;
-            aDesc = state.contents[i].desc;
-            break;
-          }
-          i = i + 1;
-        }
-        document.querySelector('#article').innerHTML = `
+        if (state.mode === 'create') {
+          document.querySelector('#content').innerHTML = `
         <article>
-          <h2>${aTitle}</h2>
-          ${aDesc}
+            <form onsubmit="
+                event.preventDefault();
+                let _title = this.title.value;
+                let _desc = this.desc.value;
+                store.dispatch({
+                    type:'CREATE',
+                    title:_title,
+                    desc:_desc
+                })
+            ">
+                <p>
+                    <input type="text" name="title" placeholder="title">
+                </p>
+                <p>
+                    <textarea name="desc" placeholder="description"></textarea>
+                </p>
+                <p>
+                    <input type="submit">
+                </p>
+            </form>
         </article>
         `
+        } else if (state.mode === 'read') {
+          let i = 0;
+          let aTitle, aDesc;
+          while (i < state.contents.length) {
+            if (state.contents[i].id === state.selected_id) {
+              aTitle = state.contents[i].title;
+              aDesc = state.contents[i].desc;
+              break;
+            }
+            i = i + 1;
+          }
+          document.querySelector('#content').innerHTML = `
+        <article>
+            <h2>${aTitle}</h2>
+            ${aDesc}
+        </article>
+        `
+        }
       }
 
       // reducer(이전 state값, 호출된 이후의 action값)
@@ -85,30 +112,47 @@
         // store를 처음 생성하면 최초 1회로 action과는 상관없이 호출이 되는데, 그 떄의 state값은 undefined 이다 
         if (state === undefined) {
           return { // 새로운 state값 반환
+            max_id: 2,
+            mode: 'create',
             selected_id: 2,
             contents: [{
                 id: 1,
-                title: 'HTML2',
-                desc: 'HTML is...'
+                title: 'HTML',
+                desc: 'HTML is ..'
               },
               {
                 id: 2,
                 title: 'CSS',
-                desc: 'CSS is ...'
+                desc: 'CSS is ..'
               }
             ]
           }
         }
-
         let newState = {}; // 빈 객체
         if (action.type === 'SELECT') {
           // state값을 반환할 때는 항상 복제된 값을 반환해야 한다
           // Object.assign(대상 객체, 복제할 객체) : 객체를 복제해 대상 객체에 붙여넣기한다
-          Object.assign(newState, state, {
+          newState = Object.assign({}, state, {
             selected_id: action.id
-          }) // state 객체의 값과, selected_id의 값을 newState 객체에 복제
+          }); // state 객체의 값과, selected_id의 값을 newState 객체에 복제
+        } else if (action.type === 'CREATE') {
+          let newMaxId = state.max_id + 1; // 기존의 id값이 2이므로, 3
+          // concat(): 배열을 결합하는 메서드
+          let newContents = state.contents.concat();
+          // 배열 추가
+          newContents.push({
+            id: newMaxId,
+            title: action.title,
+            desc: action.desc
+          });
+          // assign(): 객체를 병합하는 메서드. 중복이 있으면 덮어씌운다
+          newState = Object.assign({}, state, {
+            max_id: newMaxId,
+            contents: newContents,
+            mode: 'read'
+          })
         }
-        console.log("action, state, newState", action, state, newState);
+        console.log(action, state, newState);
         return newState;
       }
 
@@ -117,9 +161,10 @@
       let store = Redux.createStore(reducer);
 
       // 상태 변화 구독
-      // store.subscribe(): 상태변화가 생길 때마다 이를 감지(상태변화를 구독)하고, 등록된 콜백함수(여기서는 article)를 실행시킨다
+      // store.subscribe(): 상태 변화가 생길 때마다 이를 감지(상태변화를 구독)하고, 등록된 콜백함수(여기서는 article)를 실행시킨다
       // subscribe() 함수는 UI를 새로 그린다
       store.subscribe(article); // store 객체에 subscribe() 메서드를 호출한다
+      store.subscribe(TOC); // 상태 변화가 생길 때마다 TOC를 호출하여 리프레시한다
 
       subject();
       TOC();
