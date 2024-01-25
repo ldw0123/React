@@ -53,9 +53,14 @@
       function control() {
         document.querySelector('#control').innerHTML = `
     <ul>
-        <li><a onclick="event.preventDefault();"
-        href="/create">create</a></li>
-        <li><input type="button" value="delete"></li>
+        <li>
+          <a onclick="event.preventDefault();"
+            href="/create">create</a>
+        </li>
+        <li>
+          <input onclick="store.dispatch({ type: 'DELETE' });"
+            type="button" value="delete">
+        </li>
     </ul>
     `;
       }
@@ -96,7 +101,7 @@
               aDesc = state.contents[i].desc;
               break;
             }
-            i = i + 1;
+            i += 1;
           }
           document.querySelector('#content').innerHTML = `
         <article>
@@ -114,7 +119,7 @@
           return { // 새로운 state값 반환
             max_id: 2,
             mode: 'create',
-            selected_id: 2,
+            selected_id: null,
             contents: [{
                 id: 1,
                 title: 'HTML',
@@ -151,8 +156,20 @@
             contents: newContents,
             mode: 'read'
           })
+        } else if (action.type === 'DELETE') {
+          let newContents = [] // 빈 배열
+          let i = 0;
+          while (i < state.contents.length) {
+            if (state.selected_id !== state.contents[i].id) {
+              newContents.push(
+
+              )
+              break;
+            }
+            i += 1;
+          }
         }
-        console.log(action, state, newState);
+        console.log("action, state, newState", action, state, newState);
         return newState;
       }
 
