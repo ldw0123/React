@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '../styles/normal.css';
 
 export default function Normal() {
   const [number, setNumber] = useState(1);

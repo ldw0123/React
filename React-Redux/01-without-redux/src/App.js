@@ -1,5 +1,5 @@
 import './App.css';
-import Normal from './components/Normal';
+import Normal from './components/WithoutRedux';
 import WithRedux from './components/WithRedux';
 
 function App() {
