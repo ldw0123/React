@@ -10,7 +10,7 @@ function App() {
       <br />
       <hr />
       <br />
-      <h2>Redux가 첨가된 React 프로젝트</h2>
+      <h2>Redux가 가미된 React 프로젝트</h2>
       <WithRedux />
     </div>
   );
