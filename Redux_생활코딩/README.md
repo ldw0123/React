@@ -1,3 +1,3 @@
-### Redux 생활코딩 강의
+Redux 생활코딩 강의
 
-### https://opentutorials.org/course/4901
+https://opentutorials.org/course/4901
