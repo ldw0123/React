@@ -1,1 +1,1 @@
-React 공부
+React & TypeScript 공부
