@@ -13,7 +13,7 @@ class Dict {
     this.words = {};
   }
   add(word: Word) {
-    // 클래스를 타입으로 사용!
+    // 클래스(Word)를 타입으로 사용!
     // 단어사전에 단어를 추가하는 메서드
     if (this.words[word.term] === undefined)
       // 주어진 단어가 아직 사전에 없으면
@@ -23,17 +23,36 @@ class Dict {
     // term을 이용해 단어를 불러오기
     return this.words[term];
   }
+  update(word: Word) {
+    // 단어사전을 수정하는 메서드
+    if (this.words[word.term] !== undefined) this.words[word.term] = word.def;
+  }
+  del(term: string) {
+    // 단어를 삭제하는 메서드
+    if (this.words[term] !== undefined) {
+      delete this.words[term]; // delete 연산자: 객체의 속성을 삭제
+    }
+  }
 }
 
 class Word {
   constructor(public term: string, public def: string) {}
 }
 
-const kimchi = new Word('kimchi', '한국의 음식');
+const kimchi = new Word('kimchi', '완벽한 한국의 음식');
+const bibimbap = new Word('bibimbap', 'super cool food');
 
 const dict = new Dict();
 
 dict.add(kimchi);
-dict.def('kimchi'); // kimchi의 def를 찾기
+dict.add(bibimbap);
+console.log('kimchi: ', dict.def('kimchi')); // kimchi의 word.def
+console.log('bibimbap: ', dict.def('bibimbap'));
 
-console.log(dict); // 사전 출력
+dict.update(new Word('kimchi', 'very incredible super food'));
+console.log('UPDATED KIMCHI: ', dict.def('kimchi'));
+console.log('NOT UPDATED BIBIMBAP: ', dict.def('bibimbap'));
+
+dict.del('pizza');
+console.log('DELETED BIBIMBAP', dict.def('bibimbap'));
+console.log('NOT DELETED KIMCHI: ', dict.def('kimchi'));
