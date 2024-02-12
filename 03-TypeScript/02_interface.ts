@@ -29,7 +29,6 @@ interface Character {
   health: number;
 }
 
-// interface 상속
 interface Man extends Character {
   name: string;
 }
@@ -40,9 +39,11 @@ const nicco: Man = {
   health: 10,
 };
 
+//////////////////////////////////////////////////////////
+
 // 추상 클래스: 객체를 생성할 수 없는 클래스. 다른 클래스가 상속받아 구현할 수 있다
 // 추상 메서드: 선언만 있고 구현 내용이 없는 메서드
-abstract class User {
+abstract class UserA {
   // 접근 제어자     해당 클래스 내   자식 클래스 내    인스턴스
   // public           o             o            o
   // protected        o             o            x
@@ -52,7 +53,7 @@ abstract class User {
   abstract fullName(): string; // 추상 메서드
 }
 
-class Player extends User {
+class PlayerA extends UserA {
   // Player 클래스에서 User 추상 클래스를 구현
   fullName() {
     return `${this.firstName} ${this.lastName}`;
@@ -61,3 +62,47 @@ class Player extends User {
     return `Hello ${name}. My name is ${this.fullName()}`;
   }
 }
+
+//////////////////////////////////////////////////////////
+
+// 추상클래스를 인터페이스로 바꾸기
+// 클래스는 아니지만, 클래스의 모양을 특정할 수 있게 하는 간단한 방법
+
+interface UserB {
+  firstName: string;
+  lastName: string;
+  sayHi(name: string): string;
+  fullName(): string;
+}
+
+interface Human {
+  health: number;
+}
+
+// implements: interface 상속
+// interface를 상속할 때에는 private 속성을 사용하지 못한다 -> public으로 해야 함
+class PlayerB implements UserB, Human {
+  constructor(
+    public firstName: string,
+    public lastName: string,
+    public health: number
+  ) {}
+  fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
+  sayHi(name: string) {
+    return `Hello ${name}. My name is ${this.fullName()}`;
+  }
+}
+
+// interface를 타입으로 지정하기
+function makeUser(user: UserB) {
+  return 'Hi';
+}
+
+makeUser({
+  firstName: 'nicco',
+  lastName: 'las',
+  fullName: () => 'xx',
+  sayHi: (name) => 'string',
+});
