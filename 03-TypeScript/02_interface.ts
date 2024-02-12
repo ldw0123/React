@@ -16,7 +16,7 @@ interface StudentB {
 type A = string; // 타입 별칭 (Type Alias) 가능
 // interface B = string; // 에러! 인터페이스는 객체의 모양을 정의한다
 
-// 똑같은 이름의 인터페이스를 3번 만들어도, 타입스크립트가 알아서 합쳐준다 (type은 불가능)
+// 중복된 이름의 인터페이스를 3번 만들어도, 타입스크립트가 알아서 합쳐준다 (type은 불가능)
 interface Character {
   name: string;
 }
@@ -29,6 +29,7 @@ interface Character {
   health: number;
 }
 
+// extends: interface 상속. 한 인터페이스가 다른 인터페이스를 상속받을 때 사용
 interface Man extends Character {
   name: string;
 }
@@ -37,6 +38,43 @@ const nicco: Man = {
   name: 'nicco',
   lastName: 'n',
   health: 10,
+};
+
+//////////////////////////////////////////////////////////
+
+// type의 상속 vs interface의 상속
+
+// type
+type Animal1 = {
+  name: string;
+};
+
+type Bear1 = Animal1 & {
+  honey: boolean;
+};
+
+const Animal1: Bear1 = {
+  name: 'bear',
+  honey: true,
+};
+
+// interface
+interface Animal2 {
+  name: string;
+}
+interface Bear2 extends Animal2 {
+  honey: boolean;
+}
+
+// interface는 중복된 이름도 가능!
+interface Bear2 {
+  age: number;
+}
+
+const Animal2: Bear2 = {
+  name: 'polar bear',
+  honey: true,
+  age: 6,
 };
 
 //////////////////////////////////////////////////////////
@@ -79,7 +117,7 @@ interface Human {
   health: number;
 }
 
-// implements: interface 상속
+// implements: interface 상속. 클래스가 인터페이스를 구현할 때 사용
 // interface를 상속할 때에는 private 속성을 사용하지 못한다 -> public으로 해야 함
 class PlayerB implements UserB, Human {
   constructor(
