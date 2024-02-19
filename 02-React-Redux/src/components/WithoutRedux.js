@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import '../styles/normal.css';
 
-export default function Normal() {
+export default function WithoutRedux() {
   const [number, setNumber] = useState(1);
   return (
     <div id="container">

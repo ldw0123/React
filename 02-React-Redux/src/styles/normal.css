@@ -3,6 +3,7 @@
   border: 5px solid red;
   margin: 10px;
   padding: 5px;
+  max-width: 1200px;
 }
 #grid {
   display: grid;
