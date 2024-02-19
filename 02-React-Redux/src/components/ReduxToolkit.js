@@ -1,17 +1,30 @@
 import React from 'react';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 import { createStore } from 'redux';
 
 function reducer(state, action) {
+  if (action.type == 'up') {
+    return { ...state, value: state.value + action.step };
+  }
   return state;
 }
 
 const initialState = { value: 0 };
 const store = createStore(reducer, initialState);
+
 function Counter() {
+  const dispatch = useDispatch();
+  const count = useSelector((state) => state.value);
   return (
     <div>
-      <button>+</button> 0
+      <button
+        onClick={() => {
+          dispatch({ type: 'up', step: 2 });
+        }}
+      >
+        2씩 증가하는 버튼
+      </button>{' '}
+      {count}
     </div>
   );
 }
