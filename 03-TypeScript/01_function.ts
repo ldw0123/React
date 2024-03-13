@@ -82,3 +82,15 @@ const a = superPrint3([1, 2, 3, 4]); // 0번 인덱스인 1의 타입은 number�
 const b = superPrint3([true, false, true]); // T는 boolean으로 유추
 const c = superPrint3(['a', 'b', 'c']); // T는 string
 const d = superPrint3([1, 2, true, false, '2']); // T는 number
+
+// 4) Generic 변형 - 제네릭 추가
+type SuperPrint4 = {
+  <T, M>(arrayyy: T[], bbb: M): T; // 함수의 첫 번째 매개변수로 T 배열, 두 번째로 M이 들어옴
+};
+
+const superPrint4: SuperPrint4 = (arrayyy) => arrayyy[0]; // superPrint3함수는 배열의 첫 번째 요소의 타입과 동일한 타입을 반환 -> T
+
+const e = superPrint4([1, 2, 3, 4], 'x'); // T(반환 타입)는 number로, M은 string으로 유추
+const f = superPrint4([true, false, true], 1); // T는 boolean으로, M은 number으로 유추
+const g = superPrint4(['a', 'b', 'c'], false); // T는 string, M은 boolean으로 유추
+const h = superPrint4([1, 2, true, false, '2'], []); // T는 number, M은 never[]으로 유추
