@@ -94,3 +94,46 @@ const e = superPrint4([1, 2, 3, 4], 'x'); // T(반환 타입)는 number로, M은
 const f = superPrint4([true, false, true], 1); // T는 boolean으로, M은 number으로 유추
 const g = superPrint4(['a', 'b', 'c'], false); // T는 string, M은 boolean으로 유추
 const h = superPrint4([1, 2, true, false, '2'], []); // T는 number, M은 never[]으로 유추
+
+// 5) Generic 종합
+
+// 예제 1: 제네릭을 함수로 만들기
+function superPrint5<V>(a: V[]) {
+  // 첫 번째 요소로 V[] 배열 타입인 a
+  return a[0];
+}
+
+const i = superPrint5([1, 2, 3, 4]); // T(반환 타입)는 number로, M은 string으로 유추
+const j = superPrint5([true, false, true]); // T는 boolean으로, M은 number으로 유추
+const k = superPrint5(['a', 'b', 'c']); // T는 string, M은 boolean으로 유추
+const l = superPrint5([1, 2, true, false, '2']); // T는 number, M은 never[]으로 유추
+
+// 예제 2
+type Player<E> = {
+  name: string;
+  extraInfo: E;
+};
+type NicoExtra = {
+  favFood: string;
+};
+type NicoPlayer = Player<NicoExtra>;
+
+const nico: NicoPlayer = {
+  name: 'nico',
+  extraInfo: {
+    favFood: 'kimchi',
+  },
+};
+
+const lynn: Player<null> = {
+  name: 'lynn',
+  extraInfo: null, // extraInfo가 null이므로, 제네릭에 <null> 이라고 하면 된다
+};
+
+// 예제 3
+// 기본적인 타입스크립트의 타입은 제네릭으로 만들어져 있다
+type AA = Array<number>; // 숫자 배열 타입 ( number[] ) 의 다른 표현
+
+let arrayNum: AA = [1, 2, 3, 4];
+
+function printAllNumbers(arr: Array<number>) {}
