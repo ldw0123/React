@@ -4,6 +4,7 @@
     "outDir": "build", // build 디렉토리로 컴파일
     "target": "ES6", // es6 버전의 js 파일로 컴파일
     "lib": ["ES6", "DOM"], // es6를 지원하는 서버와, 브라우저 환경(DOM)에서 코드를 실행
-    "strict": true // TypeScript가 실수로부터 보호하도록 함
+    "strict": true, // TypeScript가 실수로부터 보호하도록 함
+    "allowJs": true // .js 파일의 컴파일을 허용한다
   }
 }
