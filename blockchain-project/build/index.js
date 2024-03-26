@@ -1,9 +1,3 @@
+"use strict";
 // Block Chain Project
-class Block {
-    constructor(data) {
-        this.data = data;
-    }
-    static hello() {
-        return 'hi';
-    }
-}
+console.log('hi');

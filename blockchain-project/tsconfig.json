@@ -3,8 +3,10 @@
   "compilerOptions": {
     "outDir": "build", // build 디렉토리로 컴파일
     "target": "ES6", // es6 버전의 js 파일로 컴파일
-    "lib": ["ES6", "DOM"], // es6를 지원하는 서버와, 브라우저 환경(DOM)에서 코드를 실행
+    "lib": ["ES6"], // es6를 지원하는 서버에서 코드를 실행 ("DOM": 브라우저 환경(DOM)에서 실행)
     "strict": true, // TypeScript가 실수로부터 보호하도록 함
-    "allowJs": true // .js 파일의 컴파일을 허용한다
+    // "allowJs": true, // .js 파일의 컴파일을 허용한다 (TS와 JS를 같이 사용할 수 있다)
+    "esModuleInterop": true, // CommonJS 모듈을 간단한 방법으로 import할 수 있게 한다
+    "module": "CommonJS" // CommonJS 모듈 시스템 사용 ("umd": 브라우저 앱을 만들 때 사용)
   }
 }
