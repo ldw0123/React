@@ -42,7 +42,7 @@ class BlockChain {
     this.blocks.push(newBlock);
   }
   public getBlocks() {
-    return this.blocks;
+    return [...this.blocks]; // 새로운 배열을 반환해서 해킹에 보호
   }
 }
 
@@ -50,5 +50,8 @@ const blockchain = new BlockChain();
 blockchain.addBlock('First one');
 blockchain.addBlock('Second one');
 blockchain.addBlock('Third one');
+blockchain.addBlock('Fourth one');
+
+blockchain.getBlocks().push(new Block('xxxxx', 12345, 'HACKEDDDDD!!')); // 해킹
 
 console.log(blockchain.getBlocks());
