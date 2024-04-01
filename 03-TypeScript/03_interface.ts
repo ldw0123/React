@@ -1,4 +1,4 @@
-// interface: 객체의 속성과 타입을 정의하는 키워드
+// ⭐️interface: 객체의 속성과 타입을 정의
 // interface는 클래스나 객체가 특정 구조를 따르도록 강제하는 역할을 한다. 객체의 속성과 함수(메서드)의 시그니처(입력 매개변수와 반환 타입)를 정의할 수 있다. 클래스가 특정 메서드를 반드시 구현하도록 강제하는데도 사용될 수 있다
 
 // interface와 type은 매우 유사하다!
@@ -29,7 +29,7 @@ interface Character {
   health: number;
 }
 
-// extends: interface 상속. 한 인터페이스가 다른 인터페이스를 상속받을 때 사용
+// ⭐️extends: interface 상속. 한 인터페이스가 다른 인터페이스를 상속받을 때 사용
 interface Man extends Character {
   name: string;
 }
@@ -79,7 +79,7 @@ const Animal2: Bear2 = {
 
 //////////////////////////////////////////////////////////
 
-// 추상 클래스: 객체를 생성할 수 없는 클래스. 다른 클래스가 상속받아 구현할 수 있다
+// ⭐️추상 클래스: 객체를 생성할 수 없는 클래스. 다른 클래스가 상속받아 구현할 수 있다
 // 추상 메서드: 선언만 있고 구현 내용이 없는 메서드
 abstract class UserA {
   // 접근 제어자     해당 클래스 내   자식 클래스 내    인스턴스
@@ -117,9 +117,10 @@ interface Human {
   health: number;
 }
 
-// implements: interface 상속. 클래스가 인터페이스를 구현할 때 사용
+// ⭐️implements: 클래스가 인터페이스를 구현할 때 사용
 // interface를 상속할 때에는 private 속성을 사용하지 못한다 -> public으로 해야 함
 class PlayerB implements UserB, Human {
+  // ⭐️생성자의 역할: 1) 객체 초기화 2) 파라미터 전달(파라미터를 받아 객체의 속성을 초기화)
   constructor(
     public firstName: string,
     public lastName: string,
