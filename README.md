@@ -1,1 +1,1 @@
-React & TypeScript 공부
+React & TypeScript & Next.js 공부
