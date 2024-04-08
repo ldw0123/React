@@ -10,7 +10,7 @@ html {
 
 body {
   margin: 0;
-  background: radial-gradient(#ffffff, #e0e0e0);
+  background: radial-gradient(#7a7a7a, rgb(117, 117, 117));
 }
 
 .header-background {
