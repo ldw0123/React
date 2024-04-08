@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
+import MainHeaderBackground from './main-header-background';
 import logoImg from '@/assets/logo.png'; // logo.png 파일을 logoImg 객체로 불러오기
 import classes from './main-header.module.css'; // css module 파일을 classes 객체로 불러오기
 
@@ -11,22 +12,26 @@ import classes from './main-header.module.css'; // css module 파일을 classes 
 
 export default function MainHeader() {
   return (
-    <header className={classes.header}>
-      <Link className={classes.logo} href="/">
-        <Image src={logoImg} alt="접시에 담긴 음식" priority />
-        NextLevel Food
-      </Link>
+    <>
+      <MainHeaderBackground />
 
-      <nav className={classes.nav}>
-        <ul>
-          <li>
-            <Link href="/meals">식사 탐색</Link>
-          </li>
-          <li>
-            <Link href="/community">음식 커뮤니티</Link>
-          </li>
-        </ul>
-      </nav>
-    </header>
+      <header className={classes.header}>
+        <Link className={classes.logo} href="/">
+          <Image src={logoImg} alt="접시에 담긴 음식" priority />
+          NextLevel Food
+        </Link>
+
+        <nav className={classes.nav}>
+          <ul>
+            <li>
+              <Link href="/meals">식사 탐색</Link>
+            </li>
+            <li>
+              <Link href="/community">음식 커뮤니티</Link>
+            </li>
+          </ul>
+        </nav>
+      </header>
+    </>
   );
 }
