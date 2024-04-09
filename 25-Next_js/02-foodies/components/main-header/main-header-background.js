@@ -12,11 +12,11 @@ export default function MainHeaderBackground() {
             <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop
                 offset="0%"
-                style={{ stopColor: '#6699ff', stopOpacity: '1' }}
+                style={{ stopColor: '#ffad33', stopOpacity: '1' }}
               />
               <stop
                 offset="100%"
-                style={{ stopColor: '#9999ff', stopOpacity: '1' }}
+                style={{ stopColor: '#b36b00', stopOpacity: '1' }}
               />
             </linearGradient>
           </defs>
