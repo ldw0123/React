@@ -9,6 +9,8 @@ const db = sql('meals.db');
 
 export async function getMeals() {
   await new Promise((resolve) => setTimeout(resolve, 3000));
+
+  // throw new Error('음식 불러오기 실패'); // 에러 발생!
   return db.prepare('SELECT * FROM meals').all(); // meals 테이블에서 모든 열을 select(선택)
   // all(): 여러개의 모든 행을 가져와서 실행
   // get(): 하나의 행을 가져와서 실행
