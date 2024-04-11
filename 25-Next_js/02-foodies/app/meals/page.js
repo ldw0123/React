@@ -2,8 +2,12 @@ import Link from 'next/link';
 
 import MealsGrid from '@/components/meals/meals-grid';
 import classes from './page.module.css';
+import { getMeals } from '@/lib/meals';
 
-export default function MealsPage() {
+export default async function MealsPage() {
+  // 리액트 컴포넌트에서는 할 수 없었던 일이지만, 서버 컴포넌트에서는 함수들이 async 함수로 바뀔 수 있다
+  const meals = await getMeals();
+
   return (
     <>
       <header className={classes.header}>
@@ -19,7 +23,7 @@ export default function MealsPage() {
         </p>
       </header>
       <main className={classes.main}>
-        <MealsGrid meals={[]} />
+        <MealsGrid meals={meals} />
       </main>
     </>
   );
