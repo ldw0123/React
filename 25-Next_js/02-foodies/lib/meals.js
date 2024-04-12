@@ -16,3 +16,8 @@ export async function getMeals() {
   // get(): 하나의 행을 가져와서 실행
   // run(): 데이터를 변경
 }
+
+export function getMeal(slug) {
+  // better-sqlite3가 SQL 인젝션으로부터 지켜줌
+  return db.prepare('SELECT * FROM meals WHERE slug = ?').get(slug);
+}
