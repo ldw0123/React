@@ -19,21 +19,22 @@ export default function ImagePicker({ label, name }) {
 
   // input이 새로운 값을 지닐 때마다 작동되는 함수
   function handleImageChange(event) {
-    const file = event.target.files[0]; // 첫 번째 파일만 접근\
+    const file = event.target.files[0]; // 첫 번째 파일만 접근
 
     // 유저가 파일을 선택하지 않았을 경우
     if (!file) {
+      setPickedImage(null); // 미리보기된 이미지를 재설정
       return;
     }
 
-    // 미리보기를 하려면 Data URL을 사용해야 한다
+    // 미리보기를 하려면 Data URL(파일의 데이터를 직접 URL 문자열로 인코딩한 것) 을 사용해야 한다
     const fileReader = new FileReader();
 
     fileReader.onload = (url) => {
-      setPickedImage(fileReader.result);
+      setPickedImage(fileReader.result); //  읽어온 이미지 데이터(URL)를 저장
     };
 
-    fileReader.readAsDataURL(file);
+    fileReader.readAsDataURL(file); // 선택된 이미지 파일을 Data URL 형식으로 읽는다
   }
 
   return (
@@ -48,19 +49,15 @@ export default function ImagePicker({ label, name }) {
             <Image src={pickedImage} alt="유저가 선택한 이미지" fill />
           )}
         </div>
-        {/* id={name} 로 해서 <label>을 이 input에 연결시키고,
-        accept 속성으로 .png, .jpeg 이미지 파일이 접수되도록 제어하고,
-        name={name} 로 해서 나중에 업로드 된 이미지를 추출하고,
-        ref={imageInput} 속성으로 click 메서드를 작동시키고,
-        onchange 속성으로 input이 새로운 값을 지닐 때마다 함수를 호출한다
-        */}
         <input
           className={classes.input}
           type="file"
-          id={name}
-          accept="image/png, image/jpeg"
-          name={name}
-          onChange={handleImageChange}
+          id={name} // <label>을 이 input에 연결
+          accept="image/png, image/jpeg" // .png, .jpeg 이미지 파일이 접수되도록 제어
+          name={name} // 나중에 업로드 된 이미지를 추출
+          ref={imageInput} // click 메서드를 작동
+          onChange={handleImageChange} // input이 새로운 값을 지닐 때마다 함수를 호출
+          required // 반드시 이미지를 선택하도록 함
         />
         <button
           className={classes.button}
