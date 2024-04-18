@@ -96,3 +96,8 @@
   color: #979797;
   cursor: not-allowed;
 }
+
+.error_msg {
+  font-size: large;
+  color: #f9572a;
+}
