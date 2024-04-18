@@ -1,6 +1,9 @@
 // form을 제출하는 컴포넌트 분리
 'use server';
 
+import { saveMeal } from './meals';
+import { redirect } from 'next/navigation';
+
 /*
 Server Action: 클라이언트에서 서버에 있는 함수를 직접 호출한다
 DB에 데이터를 저장, 수정 등을 하고 싶으면 당연히 서버를 거쳐야 한다. 그래서 page.js에 <form>같은 것도 만들고 서버 파일로 이동해서 거기에 API도 작성해놔야하는데, 그게 귀찮으면 그냥 page.js 안에서 해결할 수 있는 기능이다
@@ -18,5 +21,6 @@ export async function shareMeal(formData) {
     creator_email: formData.get('email'),
   };
 
-  console.log(meal); // 제출 버튼을 누르면 터미널에 meal 데이터가 출력됨
+  await saveMeal(meal);
+  redirect('/meals');
 }
