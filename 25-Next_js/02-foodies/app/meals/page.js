@@ -5,6 +5,12 @@ import MealsGrid from '@/components/meals/meals-grid';
 import classes from './page.module.css';
 import { getMeals } from '@/lib/meals';
 
+// 정적 메타데이터
+export const metadata = {
+  title: 'All Meals',
+  description: '커뮤니티에서 공유한 맛있는 식사를 둘러보세요',
+};
+
 // Meals 컴포넌트. 데이터를 가져오는 부분을 분리된 컴포넌트로 아웃소싱
 async function Meals() {
   // 리액트 컴포넌트에서는 할 수 없었던 일이지만, 서버 컴포넌트에서는 함수들이 async 함수로 바뀔 수 있다

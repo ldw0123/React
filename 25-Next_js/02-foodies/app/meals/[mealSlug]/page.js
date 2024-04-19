@@ -6,6 +6,21 @@ import { notFound } from 'next/navigation';
 import classes from './page.module.css';
 import { getMeal } from '@/lib/meals';
 
+// 동적 메타데이터 함수
+export async function generateMetadata({ params }) {
+  const meal = getMeal(params.mealSlug);
+
+  if (!meal) {
+    notFound();
+  }
+
+  return {
+    title: meal.title,
+    description: meal.summary,
+  };
+}
+
+// 동적 페이지
 export default function MealDetailsPage({ params }) {
   const meal = getMeal(params.mealSlug);
 
