@@ -5,6 +5,7 @@ DB에 데이터를 저장, 수정 등을 하고 싶으면 당연히 서버를 �
 
 'use server';
 
+import { revalidatePath } from 'next/cache';
 import { saveMeal } from './meals';
 import { redirect } from 'next/navigation';
 
@@ -41,5 +42,8 @@ export async function shareMeal(prevState, formData) {
   }
 
   await saveMeal(meal);
+  // revalidatePath(): Next.js가 특정 path(경로)에 속하는 "캐시의 유효성 재검사(특정 페이지의 캐시를 비우는 것)" 를 하게 하는 함수
+  // 인자 1: '특정 경로', 인자 2: 'layout'(중첩된 페이지까지 재검사)
+  revalidatePath('/meals');
   redirect('/meals');
 }
