@@ -1,10 +1,10 @@
 /*
 💡 Page Router
-이전에 사용되던 방식
+이전에 사용되던 방식. SSR 기능이 기본적으로 작동
 pages 폴더 하위의 모든 폴더/파일명을 기반으로 라우팅
 index.tsx는 루트 '/' 경로 페이지,
 _app.tsx는 프로젝트 최상위 컴포넌트 역할,
-_documents.tsx는 SSR 시 사용되며, 초기 HTML과 CSS 구조를 정의
+_documents.tsx는 초기 HTML과 CSS 구조를 정의
 
 💡 App Router
 Next.tsx 13 버전부터 사용. Server Components & Server Actions를 사용 가능하게 되었다
