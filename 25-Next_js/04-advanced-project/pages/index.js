@@ -15,7 +15,7 @@ const DUMMY_MEETUPS = [
     id: '2',
     title: 'A Second Meetup',
     image:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Universal-Islands-of-Adventure-Harry-Potter-Castle-9182.jpg/2560px-Universal-Islands-of-Adventure-Harry-Potter-Castle-9182.jpg',
+      'https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQnY0F0cjQSVLuQfrHpu0DBpw4f999fpShw11XzBTl25pcaQllopm4KPw7Jtqde0rEybMBCKGXpZLiG4G5Q3kOAPJuzSilu_X86nnfFsA',
     address: 'some address 10, Busan City',
     description: 'This is a second meetup!',
   },
