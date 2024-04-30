@@ -52,9 +52,12 @@ export async function getStaticProps() {
   // 항상 객체를 반환한다
   /* props 객체 프로퍼티 설정
     이 함수에서 DUMMY_MEETUPS를 읽어들이고 준비한 다음, 이 페이지 컴포넌트에서 사용할 props로 설정된다. 따라서, 이 페이지 컴포넌트에서는 더 이상 상태를 관리할 필요가 없고, useEffect도 필요하지 않다 */
+  /* revalidate 프로퍼티
+    '수'초 마다 페이지를 새로 생성. 배포 후 서버에서 때때로 다시 사전 생성한다. 그러니 일부 데이터가 변경되었다고 해서 매번 다시 빌드하고 배포할 필요가 없음 */
   return {
     props: {
       meetups: DUMMY_MEETUPS,
     },
+    revalidate: 10, // 10초 마다 페이지 다시 생성
   };
 }
