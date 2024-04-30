@@ -47,6 +47,7 @@ export default function HomePage(props) {
 
 // getStaticProps() 함수 안에서는 서버에서만 돌아가는 어떤 코드든지 전부 실행할 수 있다
 // 파일 시스템에 접근 가능하고, 데이터베이스에 연결할 수도 있다. 함수 안의 코드는 서버에서도, 클라이언트 측에서도 절대 실행되지 않는다
+
 export async function getStaticProps() {
   // API에서 데이터를 가져오기
   // 항상 객체를 반환한다
@@ -61,3 +62,16 @@ export async function getStaticProps() {
     revalidate: 10, // 10초 마다 페이지 다시 생성
   };
 }
+
+// getServerSideProps() 함수: 요청이 들어올 때마다 페이지를 다시 생성
+// export async function getServerSideProps(context) {
+//   const req = context.req;
+//   const res = context.res;
+
+//   // API에서 데이터를 가져오기
+//   return {
+//     props: {
+//       DUMMY_MEETUPS,
+//     },
+//   };
+// }
