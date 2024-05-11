@@ -1,5 +1,8 @@
 // localhost:3000/new-meetup
 import { useRouter } from 'next/router';
+import { Fragment } from 'react';
+import Head from 'next/head';
+
 import NewMeetupForm from '@/components/meetups/NewMeetupForm';
 
 export default function NewMeetupPage() {
@@ -25,5 +28,16 @@ export default function NewMeetupPage() {
   }
 
   // props로 실행 결과가 아니라, 포인터를 넣어주기 때문에 함수에 괄호가 없다
-  return <NewMeetupForm onAddMeetup={addMeetupHandler} />;
+  return (
+    <Fragment>
+      <Head>
+        <title>새로운 Meetup 추가</title>
+        <meta
+          name="description"
+          content="Add your own meetups and create amazing networking opportunities!"
+        />
+      </Head>
+      <NewMeetupForm onAddMeetup={addMeetupHandler} />
+    </Fragment>
+  );
 }

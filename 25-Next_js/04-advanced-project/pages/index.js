@@ -1,6 +1,9 @@
 // 시작 페이지 localhost:3000/
-import MeetupList from '@/components/meetups/MeetupList';
 import { MongoClient } from 'mongodb';
+import { Fragment } from 'react';
+import Head from 'next/head';
+
+import MeetupList from '@/components/meetups/MeetupList';
 
 // 더미 데이터
 // const DUMMY_MEETUPS = [
@@ -37,7 +40,20 @@ export default function HomePage(props) {
   return <MeetupList meetups={loadedMeetups} />;
   */
 
-  return <MeetupList meetups={props.meetups} />;
+  return (
+    <Fragment>
+      {/* title: 브라우저 탭의 페이지 이름 
+          meta: 구글과 같은 검색엔진에서 나타나는 설명 */}
+      <Head>
+        <title>Next.js Meetup 프로젝트</title>
+        <meta
+          name="description"
+          content="Browse a huge list of highly active Next.js meetups!"
+        />
+      </Head>
+      <MeetupList meetups={props.meetups} />
+    </Fragment>
+  );
 }
 
 /*
