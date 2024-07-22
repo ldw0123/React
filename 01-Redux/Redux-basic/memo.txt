@@ -32,7 +32,7 @@
 
 🔥 Redux를 쓰는 이유
 1. props 많이 쓰기 귀찮아서 (props drilling의 해결법)
-2. 전역으로 ㅍ상태(state) 변경 관리할 때 사용
+2. 전역으로 상태(state) 변경 관리할 때 사용
 
 Redux가 없는 코드는 각각의 component(부품) 간의 의존성이 너무 높다
 예를 들어, 다른 component의 코드를 수정하거나 삭제하면(Red 삭제), 다른 component와(Blue, Green) 연결된 코드가 얽혀있어 오류가 발생한다
