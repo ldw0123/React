@@ -23,7 +23,9 @@ export default {
 export const Primary = {
   args: {
     primary: true,
-    label: 'Button',
+    label: 'Button 라벨 변경해보기',
+    backgroundColor: "#fd6565",
+    size: "medium"
   },
 };
 
@@ -50,6 +52,6 @@ export const Small = {
 export const TestStorybook = {
   args: {
     primary: false,
-    label: "Button"
-  }
+    label: 'Button',
+  },
 };
