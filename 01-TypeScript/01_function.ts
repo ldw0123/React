@@ -144,4 +144,5 @@ type AA = Array<number>; // 숫자 배열 타입 ( number[] ) 의 다른 표현
 
 let arrayNum: AA = [1, 2, 3, 4];
 
+// function printAllNumbers(arr: number[]) {} -> 이 표현을 아래처럼 제네릭을 사용해서 표현할 수도 있다
 function printAllNumbers(arr: Array<number>) {}
