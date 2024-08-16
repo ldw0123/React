@@ -10,7 +10,7 @@
 
 // 로컬 스토리지 API 만들기 (모양만 내기)
 interface SStorage<T> {
-  [key: string]: T;
+  [key: string]: T; // key: string 타입, value: T 타입
 }
 
 // SStorage<T> 인터페이스를 사용하는 클래스.
