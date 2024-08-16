@@ -1,3 +1,26 @@
+// type 키워드
+
+type Friends = Array<string>; // string 배열
+type Family = string[]; // string 배열
+
+type Nickname = string;
+type Health = 1 | 5 | 10; // concrete 타입의 특정 값을 사용. 1, 5, 10 옵션 중 선택해야 함
+type Team = 'read' | 'blue' | 'yellow';
+
+type Identity = {
+  nickname: Nickname;
+  healthBar: Health;
+  team: Team;
+};
+
+const Micky: Identity = {
+  nickname: 'nico',
+  healthBar: 10,
+  team: 'blue', // 'pink' 는 X
+};
+
+//////////////////////////////////////////////////////////
+
 // ⭐️interface: 객체의 속성과 타입을 정의
 // interface는 클래스나 객체가 특정 구조를 따르도록 강제하는 역할을 한다. 객체의 속성과 함수(메서드)의 시그니처(입력 매개변수와 반환 타입)를 정의할 수 있다. 클래스가 특정 메서드를 반드시 구현하도록 강제하는데도 사용될 수 있다
 
@@ -28,6 +51,12 @@ interface Character {
 interface Character {
   health: number;
 }
+
+const cat: Character = {
+  name: 'kitty',
+  lastName: 'cutty',
+  health: 100,
+};
 
 // ⭐️extends: interface 상속. 한 인터페이스가 다른 인터페이스를 상속받을 때 사용
 interface Man extends Character {
@@ -81,11 +110,15 @@ const Animal2: Bear2 = {
 
 // ⭐️추상 클래스: 객체를 생성할 수 없는 클래스. 다른 클래스가 상속받아 구현할 수 있다
 // 추상 메서드: 선언만 있고 구현 내용이 없는 메서드
+
+/*
+  접근 제어자     해당 클래스 내   자식 클래스 내    인스턴스
+  public           o             o            o
+  protected        o             o            x
+  private          o             x            x
+*/
+
 abstract class UserA {
-  // 접근 제어자     해당 클래스 내   자식 클래스 내    인스턴스
-  // public           o             o            o
-  // protected        o             o            x
-  // private          o             x            x
   constructor(protected firstName: string, protected lastName: string) {}
   abstract sayHi(name: string): string; // 추상 메서드
   abstract fullName(): string; // 추상 메서드
