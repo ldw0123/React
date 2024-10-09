@@ -1,9 +1,19 @@
 import { calculateInvestmentResults, formatter } from '../util/investment.js';
 
-
 export default function Results({ input }) {
   const results = [];
   calculateInvestmentResults(input, results);
+
+  // results 배열의 첫 요소가 없을 때, 에러 메시지를 보여준다
+  if (results.length === 0) {
+    return (
+      <div className="center">
+        <p>Invalid input data provided.</p>
+        <p>유효햐지 않은 입력값입니다.</p>
+      </div>
+    );
+  }
+
   const initialInvestment =
     results[0].valueEndOfYear -
     results[0].interest -
